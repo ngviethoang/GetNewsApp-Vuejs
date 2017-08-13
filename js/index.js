@@ -19,14 +19,14 @@ let news = new Vue({
 	methods: {
 		getNewsSources: function(category) {
 			axios.get(getNewsSourcesUrl(category)).then(response => {
-				console.log(response.data.sources)
+				//console.log(response.data.sources)
 				this.sources = response.data.sources
 				this.articles = []
 			}).catch(error => { console.error(error) })
 		},
 		getNews: function(source, sortBy) {
 			axios.get(getNewsUrl(source, sortBy)).then(response => {
-				console.log(response.data)
+				//console.log(response.data)
 				this.articles = response.data.articles
 			}).catch(error => { console.error(error) })
 		}
@@ -39,8 +39,7 @@ let news = new Vue({
 		},
 		date: value => {
 			if(!value) return ''
-			value = new Date(value.toString())
-			return value.toUTCString()
+			return new Date(value.toString()).toUTCString()
 		},
 		category: value => {
 			if(!value) return ''
