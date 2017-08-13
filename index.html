@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>News App Vue.js</title>
+
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic'>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div class="news ui segment piled raised">
+        <h4 class="ui header">News</h4>
+        <div class="ui grid divided">
+            <div class="row">
+                <div class="three wide column"><!-- category -->
+                    <div class="ui link list">
+                        <div v-for="(category, index) in categories" class="item category" v-on:click="getNewsSources(category)">
+                            <i class="map marker icon"></i>
+                            <div class="content">
+                                <a class="header">{{ category | capitalize | category }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column"><!-- sources -->
+                    <div class="ui list">
+                        <div class="item" v-for="source in sources">
+                            <i class="newspaper icon"></i>
+                            <div class="content">
+                                <div class="header" v-bind:data-tooltip="source.description" data-position="top left" data-variation="wide" style="cursor: pointer">{{ source.name }}</div>
+                                <div class="list sortBy" v-for="sortBy in source.sortBysAvailable" v-on:click="getNews(source.id, sortBy)">
+                                    <div class="item">
+                                        <a class="header">{{ sortBy | capitalize }} News</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ten wide column"><!-- articles -->
+                    <div class="ui relaxed divided items">
+                        <div class="item" v-for="article in articles">
+                            <a class="ui small image">
+                                <img v-bind:src="article.urlToImage">
+                            </a>
+                            <div class="content">
+                                <a v-bind:href="article.url" class="header" target="_blank">{{ article.title }}</a>
+                                <div class="meta">
+                                    <span>{{ article.author }}</span>
+                                </div>
+                                <div class="description">{{ article.description }}</div>
+                                <div class="extra">{{ article.publishedAt | date }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js'></script>
+    <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
