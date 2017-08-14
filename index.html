@@ -48,7 +48,7 @@
                                 <img v-bind:src="article.urlToImage">
                             </a>
                             <div class="content">
-                                <a v-bind:href="article.url" class="header" target="_blank">{{ article.title }}</a>
+                                <a v-bind:href="article.url" class="header" target="_blank" v-html="article.title"></a>
                                 <div class="meta">
                                     <span>{{ article.author }}</span>
                                 </div>
