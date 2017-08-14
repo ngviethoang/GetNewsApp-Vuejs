@@ -27,6 +27,10 @@
                     </div>
                 </div>
                 <div class="three wide column"><!-- sources -->
+                    <div class="ui right floated blue tiny statistic" v-show="sources.length > 0">
+                        <div class="value">{{ sources.length }}</div>
+                        <div class="label"> newspapers</div>
+                    </div>
                     <div class="ui list">
                         <div class="item" v-for="source in sources">
                             <i class="newspaper icon"></i>
@@ -42,6 +46,10 @@
                     </div>
                 </div>
                 <div class="ten wide column"><!-- articles -->
+                    <div class="ui right floated tiny teal statistic" v-show="articles.length > 0">
+                        <div class="value">{{ articles.length }}</div>
+                        <div class="label"> articles</div>
+                    </div>
                     <div class="ui relaxed divided items">
                         <div class="item" v-for="article in articles">
                             <a class="ui small image">
